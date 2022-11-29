@@ -1,0 +1,34 @@
+
+.head {
+  display: flex;
+  background-color: blueviolet;
+  align-items: center;
+  padding-left: 250px;
+  
+}
+
+
+.change {
+    
+    color: rgb(43, 226, 162);
+    font-size: 50px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding-right: 100px;
+
+    
+  }
+
+  .btn-lg{
+    background-color: yellowgreen;
+    font-size: 25px;
+    padding-right: 30px;
+    margin-right: 20px
+    
+  }
+
+
+  .btn-sg{
+    background-color: rgb(50, 135, 205);
+    font-size: 25px;
+    
+  }
