@@ -7,7 +7,7 @@ const LineChart = ({ data, xField, yField, loading }) => {
     xField,
     yField,
     seriesField: "version",
-    color: ["#D62A0D", "#1979C9"],
+    color: ["#D62A0D", "#1979C9", "#DAA51B", "#6D28D9", "#F97316"],
   };
 
   return (
