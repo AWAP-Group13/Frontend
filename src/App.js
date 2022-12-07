@@ -4,7 +4,6 @@ import Header from "./Components/Header";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Layout from "./Components/Layout";
 import N1view from "./Components/N1view";
 import N2view from "./Components/N2view";
 import N3view from "./Components/N3view";

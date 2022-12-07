@@ -3,6 +3,7 @@ import {
   getV1Data,
   getV2Data,
   getV3Data,
+  getV4Data,
   getV5Data,
 } from "../services/n1Services";
 import { createDataPoint } from "../utils/createDataPoint";
@@ -14,6 +15,7 @@ const services = {
   v1: getV1Data,
   v2: getV2Data,
   v3: getV3Data,
+  v4: getV4Data,
   v5: getV5Data,
 };
 
