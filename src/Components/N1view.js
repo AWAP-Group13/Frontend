@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { getV1Data, getV2Data } from "../services/n1Services";
+import {
+  getV1Data,
+  getV2Data,
+  getV3Data,
+  getV5Data,
+} from "../services/n1Services";
 import { createDataPoint } from "../utils/createDataPoint";
 import { n1Maps } from "../utils/N1Map";
 
@@ -8,6 +13,8 @@ import LineChart from "./LineChart";
 const services = {
   v1: getV1Data,
   v2: getV2Data,
+  v3: getV3Data,
+  v5: getV5Data,
 };
 
 function N1View() {
@@ -24,12 +31,16 @@ function N1View() {
     setLoading(true);
     let selectedMap = n1Maps[selected].meta;
     const isNested = selectedMap.nestedValues;
+    // console.log("SELECTED MAP", selectedMap, isNested);
 
     if (isNested) {
       const nestedKeys = Object.keys(isNested);
+      console.log("NESTED KEYS", nestedKeys);
       const newNestedSelected = nestedSelected || nestedKeys[0];
       setNestedSelected(newNestedSelected);
+      console.log("NESTED VALUE", isNested, newNestedSelected);
       selectedMap = isNested[newNestedSelected];
+      console.log("SELECTED MAP NESTED", selectedMap);
     }
 
     const { data: v1Data, variants } = await services[selected](
@@ -60,7 +71,11 @@ function N1View() {
   };
 
   return (
-    <div>
+    <div
+      style={{
+        padding: "20px",
+      }}
+    >
       <h2>Web DEV V2</h2>
       <div
         style={{
@@ -76,6 +91,7 @@ function N1View() {
             value={selected}
             onChange={(e) => {
               setSelected(e.target.value);
+              setNestedSelected(null);
             }}
           >
             {Object.keys(n1Maps).map((key) => (

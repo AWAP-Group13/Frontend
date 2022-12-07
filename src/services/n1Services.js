@@ -39,3 +39,43 @@ export const getV2Data = async (_, selectedMap) => {
     variants: allVariants,
   };
 };
+
+export const getV3Data = async (v3URL, selectedMap, xFieldOptional) => {
+  const response = await fetch(v3URL);
+  const data = await response.json();
+  const variants = data.data[0]
+    ? Object.keys(data.data[0]).filter(
+        (key) => !["_id", selectedMap.xField].includes(key)
+      )
+    : [];
+
+  return {
+    data: !xFieldOptional
+      ? data.data
+      : data.data.map((item) => ({
+          ...item,
+          xFieldOptional,
+        })),
+    variants,
+  };
+};
+
+export const getV5Data = async (v5URL, selectedMap, xFieldOptional) => {
+  const response = await fetch(v5URL);
+  const data = await response.json();
+  const variants = data.data[0]
+    ? Object.keys(data.data[0]).filter(
+        (key) => !["_id", selectedMap.xField].includes(key)
+      )
+    : [];
+
+  return {
+    data: !xFieldOptional
+      ? data.data
+      : data.data.map((item) => ({
+          ...item,
+          xFieldOptional,
+        })),
+    variants,
+  };
+};
