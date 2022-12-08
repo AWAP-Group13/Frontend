@@ -5,6 +5,7 @@ import {
   getV3Data,
   getV4Data,
   getV5Data,
+  getV6Data,
 } from "../services/n1Services";
 import { createDataPoint } from "../utils/createDataPoint";
 import { n1Maps } from "../utils/N1Map";
@@ -17,6 +18,7 @@ const services = {
   v3: getV3Data,
   v4: getV4Data,
   v5: getV5Data,
+  v6: getV6Data,
 };
 
 function N1View() {
@@ -124,6 +126,17 @@ function N1View() {
       </div>
 
       <LineChart data={data} xField="label" yField="value" loading={loading} />
+      {n1Maps[selected].description && (
+        <div>
+          <h2>Description:</h2>
+          <div>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
+            molestias delectus? Distinctio repudiandae dignissimos ipsum
+            doloremque debitis qui natus nisi dolorum, dolore tempore,
+            voluptatem incidunt voluptatibus impedit quas? Sunt, enim?
+          </div>
+        </div>
+      )}
     </div>
   );
 }

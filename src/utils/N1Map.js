@@ -63,6 +63,13 @@ const v5 = {
   version: "V5",
 };
 
+const v6 = {
+  link: `${API_BASE_URL}/v6`,
+  xField: "time",
+  CO2Measurement: "temperature",
+  version: "V6",
+};
+
 export const n1Maps = {
   v1: {
     meta: v1,
@@ -84,5 +91,9 @@ export const n1Maps = {
   v5: {
     meta: v5,
     label: "V5",
+  },
+  v6: {
+    meta: v6,
+    label: "V6",
   },
 };

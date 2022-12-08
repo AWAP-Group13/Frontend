@@ -141,3 +141,8 @@ export const getV5Data = async (v5URL, selectedMap, xFieldOptional) => {
     variants,
   };
 };
+
+export const getV6Data = async (v6URL, selectedMap, xFieldOptional) => {
+  const v6Data = await getSingleVData(v6URL, selectedMap, xFieldOptional);
+  return v6Data;
+};
