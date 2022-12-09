@@ -66,8 +66,16 @@ const v5 = {
 const v6 = {
   link: `${API_BASE_URL}/v6`,
   xField: "time",
-  CO2Measurement: "temperature",
+  yField: "CO2Measurement",
   version: "V6",
+};
+
+const v7 = {
+  link: `${API_BASE_URL}/v7`,
+  xField: "time",
+  yField: ["temperature", "Co2"],
+  version: "V7",
+  isDualAxes: true,
 };
 
 export const n1Maps = {
@@ -95,5 +103,10 @@ export const n1Maps = {
   v6: {
     meta: v6,
     label: "V6",
+  },
+  v7: {
+    meta: v7,
+    label: "V7",
+    isDualAxes: true,
   },
 };

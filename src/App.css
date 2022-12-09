@@ -1,36 +1,33 @@
-
-
-.Submain, .log{
-  display:flex;
+.Submain,
+.log {
+  display: flex;
   flex-direction: column;
-  align-items:center ;
+  align-items: center;
   font-size: 25px;
   padding: 150px;
   box-shadow: rgb(133, 95, 25);
   background-color: rgba(36, 52, 105, 0.697);
 }
 
-.form-control, .signin{
+.form-control,
+.signin {
   font-size: 25px;
   font-weight: 100;
   display: flex;
   flex-direction: column;
-  
 }
 
-
-input{
-  margin:0.5rem 0;
+input {
+  margin: 0.5rem 0;
   padding: 1rem;
-  border:n none;
+  border: n none;
   border-radius: 15px;
 }
 
 li {
-  font-size: 30px;
+  font-size: 18px;
 }
 
-
-
-
-
+a {
+  text-decoration: none;
+}

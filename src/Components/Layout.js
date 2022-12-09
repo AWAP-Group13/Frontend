@@ -5,7 +5,16 @@ export default function Layout() {
   return (
     <>
       <nav>
-        <ul>
+        <ul
+          style={{
+            display: "flex",
+            items: "center",
+            justifyContent: "space-around",
+            listStyle: "none",
+            padding: "0",
+            margin: "0 10px",
+          }}
+        >
           <li>
             <Link to="/Signup">Signup</Link>
           </li>

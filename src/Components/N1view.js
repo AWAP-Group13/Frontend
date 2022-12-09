@@ -6,11 +6,13 @@ import {
   getV4Data,
   getV5Data,
   getV6Data,
+  getV7Data,
 } from "../services/n1Services";
 import { createDataPoint } from "../utils/createDataPoint";
 import { n1Maps } from "../utils/N1Map";
 
 import LineChart from "./LineChart";
+import DualAxesChart from "./DualAxesChart";
 
 const services = {
   v1: getV1Data,
@@ -19,6 +21,11 @@ const services = {
   v4: getV4Data,
   v5: getV5Data,
   v6: getV6Data,
+  v7: getV7Data,
+};
+
+const dualAxesViews = {
+  v7: true,
 };
 
 function N1View() {
@@ -35,42 +42,42 @@ function N1View() {
     setLoading(true);
     let selectedMap = n1Maps[selected].meta;
     const isNested = selectedMap.nestedValues;
-    // console.log("SELECTED MAP", selectedMap, isNested);
 
     if (isNested) {
       const nestedKeys = Object.keys(isNested);
-      console.log("NESTED KEYS", nestedKeys);
       const newNestedSelected = nestedSelected || nestedKeys[0];
       setNestedSelected(newNestedSelected);
-      console.log("NESTED VALUE", isNested, newNestedSelected);
       selectedMap = isNested[newNestedSelected];
-      console.log("SELECTED MAP NESTED", selectedMap);
     }
 
     const { data: v1Data, variants } = await services[selected](
       selectedMap.link,
       selectedMap
     );
-
-    const newData = v1Data.map((item) => {
-      let newArr = [];
-      variants.forEach((variant) => {
-        return (
-          item[variant] &&
-          newArr.push(
-            createDataPoint(
-              variant,
-              item,
-              selectedMap,
-              item.xFieldOptional ? item[item.xFieldOptional] : null
+    let newData;
+    if (!n1Maps[selected].isDualAxes) {
+      newData = v1Data.map((item) => {
+        let newArr = [];
+        variants.forEach((variant) => {
+          return (
+            item[variant] &&
+            newArr.push(
+              createDataPoint(
+                variant,
+                item,
+                selectedMap,
+                item.xFieldOptional ? item[item.xFieldOptional] : null
+              )
             )
-          )
-        );
+          );
+        });
+        return newArr;
       });
-      return newArr;
-    });
+    } else {
+      newData = v1Data;
+    }
 
-    setData(newData.flat());
+    setData(!n1Maps[selected].isDualAxes ? newData.flat() : newData);
     setLoading(false);
   };
 
@@ -80,7 +87,7 @@ function N1View() {
         padding: "20px",
       }}
     >
-      <h2>Web DEV V2</h2>
+      <h2>N2 View</h2>
       <div
         style={{
           display: "flex",
@@ -124,8 +131,21 @@ function N1View() {
           )}
         </div>
       </div>
-
-      <LineChart data={data} xField="label" yField="value" loading={loading} />
+      {dualAxesViews[selected] ? (
+        <DualAxesChart
+          data={data}
+          xField={n1Maps[selected].meta.xField}
+          yField={n1Maps[selected].meta.yField}
+          loading={loading}
+        />
+      ) : (
+        <LineChart
+          data={data}
+          xField="label"
+          yField="value"
+          loading={loading}
+        />
+      )}
       {n1Maps[selected].description && (
         <div>
           <h2>Description:</h2>

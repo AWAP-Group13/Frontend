@@ -7,13 +7,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import N1view from "./Components/N1view";
 import N2view from "./Components/N2view";
 import N3view from "./Components/N3view";
+import Layout from "./Components/Layout";
 
 function App() {
   return (
     <div className="App">
       <BrowserRouter>
         <Header />
-        {/* <Layout /> */}
+        <Layout />
         <Routes>
           <Route path="/" element={<div>Wow</div>} />
           <Route path="/signup" element={<Signup />} />

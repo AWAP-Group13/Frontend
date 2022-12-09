@@ -146,3 +146,31 @@ export const getV6Data = async (v6URL, selectedMap, xFieldOptional) => {
   const v6Data = await getSingleVData(v6URL, selectedMap, xFieldOptional);
   return v6Data;
 };
+
+export const getV7Data = async (v7URL, selectedMap, xFieldOptional) => {
+  const response = await fetch(`${API_BASE_URL}/v7surfaceTemp`);
+  const v7Data1 = await response.json();
+
+  const response2 = await fetch(`${API_BASE_URL}/v7co2Data`);
+  const v7Data2 = await response2.json();
+
+  return { data: [v7Data1.data, v7Data2.data] };
+};
+
+export const getV8Data = async (v8URL, selectedMap, xFieldOptional) => {
+  const response = await fetch(v8URL);
+  const data = await response.json();
+  const variants = Object.keys(data.data[0]).filter(
+    (key) => !["_id", selectedMap.xField].includes(key)
+  );
+
+  return {
+    data: !xFieldOptional
+      ? data.data
+      : data.data.map((item) => ({
+          ...item,
+          xFieldOptional,
+        })),
+    variants,
+  };
+};
