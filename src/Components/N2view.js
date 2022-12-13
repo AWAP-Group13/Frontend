@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { getV8Data } from "../services/n1Services";
+import { getV8Data, getV9Data } from "../services/n1Services";
 
 import { createDataPoint } from "../utils/createDataPoint";
 import { n2Maps } from "../utils/N2Map";
+import DonutChart from "./DonutChart";
 
 import StackedLineChart from "./StackedLineChart";
 
 const services = {
   v8: getV8Data,
+  v9: getV9Data,
 };
 
 function N2View() {
   const [data, setData] = useState([]);
-  const [selected, setSelected] = useState("v8");
+  const [data2, setData2] = useState([]);
+  const [selected, setSelected] = useState("v9");
   const [nestedSelected, setNestedSelected] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -32,11 +35,12 @@ function N2View() {
       selectedMap = isNested[newNestedSelected];
     }
 
-    const { data: v1Data, variants } = await services[selected](
+    const { data: v1Data, variants, data2: vData2 } = await services[selected](
       selectedMap.link,
       selectedMap
     );
     let newData;
+    let newData2;
     if (!n2Maps[selected].isDualAxes) {
       newData = v1Data.map((item) => {
         let newArr = [];
@@ -59,7 +63,22 @@ function N2View() {
       newData = v1Data;
     }
 
+    if (vData2) {
+      newData2 = vData2.data.data.map((item) => {
+        return {
+          id: item._id,
+          label: item["Sub-sector"],
+          value: item["co2"],
+          sector: item.forSector,
+        };
+      });
+    }
+
     setData(!n2Maps[selected].isDualAxes ? newData.flat() : newData);
+    if (vData2) {
+      setData2(newData2.flat());
+    }
+
     setLoading(false);
   };
 
@@ -113,13 +132,15 @@ function N2View() {
           )}
         </div>
       </div>
-
-      <StackedLineChart
-        data={data}
-        xField="label"
-        yField="value"
-        loading={loading}
-      />
+      {selected === "v8" && (
+        <StackedLineChart
+          data={data}
+          xField="label"
+          yField="value"
+          loading={loading}
+        />
+      )}
+      {selected === "v9" && <DonutChart data={data} childData={data2} />}
       {n2Maps[selected].description && (
         <div>
           <h2>Description:</h2>

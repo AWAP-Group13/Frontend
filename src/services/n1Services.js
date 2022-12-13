@@ -174,3 +174,31 @@ export const getV8Data = async (v8URL, selectedMap, xFieldOptional) => {
     variants,
   };
 };
+
+export const getV9Data = async (v9URL, selectedMap, xFieldOptional) => {
+  const response = await fetch(v9URL);
+  const data = await response.json();
+  const variants = Object.keys(data.data[0]).filter(
+    (key) => !["_id", selectedMap.xField].includes(key)
+  );
+
+  const response2 = await fetch(`${API_BASE_URL}/v9SubSector`);
+  const data2 = await response2.json();
+  const variants2 = Object.keys(data2.data[0]).filter(
+    (key) => !["_id", selectedMap.xField].includes(key)
+  );
+
+  return {
+    data: !xFieldOptional
+      ? data.data
+      : data.data.map((item) => ({
+          ...item,
+          xFieldOptional,
+        })),
+    variants,
+    data2: {
+      data: data2,
+      variants: variants2,
+    },
+  };
+};
