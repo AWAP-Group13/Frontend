@@ -19,6 +19,8 @@ const v1 = {
       version: "V1 Global Annual",
     },
   },
+  description:
+    "V1 shows the line chart which displays measured temperature history of global historical surface temperature with monthly and annual data. ",
 };
 
 const v2 = {
@@ -26,6 +28,8 @@ const v2 = {
   xField: "time",
   yField: "temperature",
   version: "V2",
+  description:
+    "V2 shows the line chart of 2,000 years temperature reconstruction including annual data of measured temperature of global historical surface temperature history.  ",
 };
 
 const v3 = {
@@ -47,6 +51,8 @@ const v3 = {
       version: "V3 Annual",
     },
   },
+  description:
+    "V3 shows a line chart which displays the results of the Mauna Loa Carbon Dioxide (CO2) concentration measurements annually and monthly.",
 };
 
 const v4 = {
@@ -54,6 +60,8 @@ const v4 = {
   xField: "time",
   yField: "temperature",
   version: "V2",
+  description:
+    "V4 shows a line chart to display the three-ice core dataset including Mauna Loa Carbon Dioxide (CO2) measurements annually.",
 };
 
 const v5 = {
@@ -61,6 +69,8 @@ const v5 = {
   xField: "time",
   yField: "temperature",
   version: "V5",
+  description:
+    "V5 shows a line chart of historical Carbon Dioxide (CO2) record from Vostok ice core.",
 };
 
 const v6 = {
@@ -68,6 +78,8 @@ const v6 = {
   xField: "time",
   yField: "CO2Measurement",
   version: "V6",
+  description:
+    "V6 shows a line chart of Antarctic ice core 800,000 years Carbon Dioxide (CO2) measurements data.",
 };
 
 const v7 = {
@@ -76,6 +88,8 @@ const v7 = {
   yField: ["temperature", "Co2"],
   version: "V7",
   isDualAxes: true,
+  description:
+    "V7 shows the multi-axis line chart of global temperature over the past two million years.",
 };
 
 export const n1Maps = {

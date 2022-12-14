@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  getV10Data,
   getV1Data,
   getV2Data,
   getV3Data,
@@ -55,10 +56,34 @@ function N1View() {
       selectedMap
     );
     let newData;
-    if (!n1Maps[selected].isDualAxes) {
-      newData = v1Data.map((item) => {
+    if (selected !== "v10") {
+      if (!n1Maps[selected].isDualAxes) {
+        newData = v1Data.map((item) => {
+          let newArr = [];
+          variants.forEach((variant) => {
+            return (
+              item[variant] &&
+              newArr.push(
+                createDataPoint(
+                  variant,
+                  item,
+                  selectedMap,
+                  item.xFieldOptional ? item[item.xFieldOptional] : null
+                )
+              )
+            );
+          });
+          return newArr;
+        });
+      } else {
+        newData = v1Data;
+      }
+
+      setData(!n1Maps[selected].isDualAxes ? newData.flat() : newData);
+    } else {
+      newData = v1Data.v4Data.data.map((item) => {
         let newArr = [];
-        variants.forEach((variant) => {
+        v1Data.v4Data.variants.forEach((variant) => {
           return (
             item[variant] &&
             newArr.push(
@@ -73,11 +98,8 @@ function N1View() {
         });
         return newArr;
       });
-    } else {
-      newData = v1Data;
+      setData(!n1Maps[selected].isDualAxes ? newData.flat() : newData);
     }
-
-    setData(!n1Maps[selected].isDualAxes ? newData.flat() : newData);
     setLoading(false);
   };
 
@@ -87,7 +109,7 @@ function N1View() {
         padding: "20px",
       }}
     >
-      <h2>N2 View</h2>
+      <h2>N1 View</h2>
       <div
         style={{
           display: "flex",
@@ -146,15 +168,10 @@ function N1View() {
           loading={loading}
         />
       )}
-      {n1Maps[selected].description && (
+      {n1Maps[selected].meta.description && (
         <div>
           <h2>Description:</h2>
-          <div>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam,
-            molestias delectus? Distinctio repudiandae dignissimos ipsum
-            doloremque debitis qui natus nisi dolorum, dolore tempore,
-            voluptatem incidunt voluptatibus impedit quas? Sunt, enim?
-          </div>
+          <div>{n1Maps[selected].meta.description}</div>
         </div>
       )}
     </div>
