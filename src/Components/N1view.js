@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {
-  getV10Data,
   getV1Data,
   getV2Data,
   getV3Data,
