@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { API_BASE_URL } from "../config/constant";
 
 export default class Login extends Component {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class Login extends Component {
     e.preventDefault();
     const { email, password } = this.state;
     console.log(email, password);
-    fetch("http://localhost:5000/login-user", {
+    fetch(`${API_BASE_URL}/auth/login-user`, {
       method: "POST",
       crossDomain: true,
       headers: {

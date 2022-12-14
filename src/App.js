@@ -8,6 +8,7 @@ import N1view from "./Components/N1view";
 import N2view from "./Components/N2view";
 import N3view from "./Components/N3view";
 import Layout from "./Components/Layout";
+import UserDetails from "./Components/userDetails";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/n1View" element={<N1view />} />
           <Route path="/n2View" element={<N2view />} />
           <Route path="/n3View" element={<N3view />} />
+          <Route path="/userInformation" element={<UserDetails />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,14 +1,14 @@
 import { API_BASE_URL } from "../config/constant";
 
 const v8 = {
-  link: `${API_BASE_URL}/v8`,
+  link: `${API_BASE_URL}/stats/v8`,
   xField: "time",
   yField: "temperature",
   version: "V8",
 };
 
 const v9 = {
-  link: `${API_BASE_URL}/v9Sector`,
+  link: `${API_BASE_URL}/stats/v9Sector`,
   xField: "Sector",
   yField: "co2",
   version: "V9",

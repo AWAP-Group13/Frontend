@@ -40,11 +40,11 @@ export const getV1Data = async (v1URL, selectedMap, xFieldOptional) => {
 
 export const getV2Data = async (_, selectedMap) => {
   const v1Data = await getV1Data(
-    `${API_BASE_URL}/v1Annually`,
+    `${API_BASE_URL}/stats/v1Annually`,
     selectedMap,
     "timeInAnnual"
   );
-  const response = await fetch(`${API_BASE_URL}/v2`);
+  const response = await fetch(`${API_BASE_URL}/stats/v2`);
   const data = await response.json();
   const variants = Object.keys(data.data[0]).filter(
     (key) => !["_id", "time"].includes(key)
@@ -82,24 +82,24 @@ export const getV3Data = async (v3URL, selectedMap, xFieldOptional) => {
 
 export const getV4Data = async (_, selectedMap) => {
   const v4DE08Data = await getSingleVData(
-    `${API_BASE_URL}/v4DE08`,
+    `${API_BASE_URL}/stats/v4DE08`,
     selectedMap,
     "timeInAnnual"
   );
   const v4DE08_02Data = await getSingleVData(
-    `${API_BASE_URL}/v4DE08_02`,
+    `${API_BASE_URL}/stats/v4DE08_02`,
     selectedMap,
     "timeInAnnual"
   );
 
   const v4DSSData = await getSingleVData(
-    `${API_BASE_URL}/v4DSS`,
+    `${API_BASE_URL}/stats/v4DSS`,
     selectedMap,
     "timeInAnnual"
   );
 
   const v3Data = await getV3Data(
-    `${API_BASE_URL}/v3Annually`,
+    `${API_BASE_URL}/stats/v3Annually`,
     selectedMap,
     "timeInAnnual"
   );
@@ -148,10 +148,10 @@ export const getV6Data = async (v6URL, selectedMap, xFieldOptional) => {
 };
 
 export const getV7Data = async (v7URL, selectedMap, xFieldOptional) => {
-  const response = await fetch(`${API_BASE_URL}/v7surfaceTemp`);
+  const response = await fetch(`${API_BASE_URL}/stats/v7surfaceTemp`);
   const v7Data1 = await response.json();
 
-  const response2 = await fetch(`${API_BASE_URL}/v7co2Data`);
+  const response2 = await fetch(`${API_BASE_URL}/stats/v7co2Data`);
   const v7Data2 = await response2.json();
 
   return { data: [v7Data1.data, v7Data2.data] };
@@ -182,7 +182,7 @@ export const getV9Data = async (v9URL, selectedMap, xFieldOptional) => {
     (key) => !["_id", selectedMap.xField].includes(key)
   );
 
-  const response2 = await fetch(`${API_BASE_URL}/v9SubSector`);
+  const response2 = await fetch(`${API_BASE_URL}/stats/v9SubSector`);
   const data2 = await response2.json();
   const variants2 = Object.keys(data2.data[0]).filter(
     (key) => !["_id", selectedMap.xField].includes(key)
