@@ -4,6 +4,12 @@ https://tranquil-sfogliatella-1256cc.netlify.app
 # Link to video where your application is presented and demonstrated.
 https://youtu.be/2b5iRdqSavY
 
+# Project test documents
+https://oamk.sharepoint.com/teams/AWDPteam13/Jaetut%20asiakirjat/Forms/AllItems.aspx?id=%2Fteams%2FAWDPteam13%2FJaetut%20asiakirjat%2FGeneral%2FTest%20documents%20AWAP%5FGROPUP%2D13&p=true&ga=1
+
+## AWAP-Group13 (github.com) 
+https://github.com/AWAP-Group13
+
 # Advance Web Applications Project-Professional English part (Group-13)
 
 ## Description of what the project is about
